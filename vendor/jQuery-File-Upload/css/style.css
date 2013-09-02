@@ -1,0 +1,53 @@
+@charset "UTF-8";
+/*
+ * jQuery File Upload Plugin CSS Example 8.0
+ * https://github.com/blueimp/jQuery-File-Upload
+ *
+ * Copyright 2013, Sebastian Tschan
+ * https://blueimp.net
+ *
+ * Licensed under the MIT license:
+ * http://www.opensource.org/licenses/MIT
+ */
+
+body {
+  padding-top: 60px;
+}
+
+.ng-cloak {
+  display: none;
+}
+
+.fileupload-drag-drop-area {
+	border: 4px dashed #DDDDDD;
+    height: 200px;
+}
+
+.fileupload-drag-drop-inside {
+    margin: 70px auto 0;
+    width: 250px;
+}
+
+.fileupload-drag-drop-inside p{
+    display: block;
+}
+.fileupload-drag-drop-inside p.fileupload-drag-drop-info {
+    font-size: 20px;
+}
+.fileupload-drag-drop-inside p {
+    text-align: center;
+}
+.fileupload-drag-drop-inside p {
+    color: #AAAAAA;
+    font-size: 14px;
+    margin: 5px 0;
+}
+
+.fileupload-drag-drop-inside p.fileupload-drag-drop-buttons  {
+	display: table;
+	margin: 0 auto;
+}
+
+.error-on-delete {
+    padding-top: 10px;
+}
