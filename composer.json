@@ -1,0 +1,27 @@
+{
+    "name": "joacub/zf-joacub-uploader-twb",
+    "description": "A data grid ZF2 module",
+    "type": "library",
+    "keywords": [
+        "grid", "datagrid", "zf2 crud module", "joacub", "at", "zf2"
+    ],
+    "homepage": "https://github.com/joacub",
+    "authors": [
+        {
+            "name": "Johan",
+            "email": "joacub@gmail.com"
+        }
+    ],
+    "require": {
+        "zendframework/zendframework": "2.*",
+        "joacub/file-bank": "dev-master"
+    },
+    "autoload": {
+        "psr-0": {
+            "ZfJoacubUploaderTwb\\": "src/"
+        },
+        "classmap": [
+            "./Module.php"
+        ]
+    }
+}
