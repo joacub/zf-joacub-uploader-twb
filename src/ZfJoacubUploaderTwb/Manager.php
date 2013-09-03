@@ -65,7 +65,7 @@ class Manager
         
         $app = $this->sl->get('application');
 		$configOptions = $this->sl->get('configuration');
-		$this->setDefaultOptions($configOptions['ZfJoacubUploaderTwb']['options']);
+		$this->setDefaultOptions($configOptions['JoacubUploader']['options']);
 		$sm = $app->getServiceManager();
 		$em = $app->getEventManager();
 		
@@ -95,8 +95,8 @@ class Manager
         $instance->setUploaderId($uploader);
         
         $config = $this->sl->get('Configuration');
-        if(isset($config['ZfJoacubUploaderTwb']['uploads'][$instance->getUploaderId()]) && is_array($config['ZfJoacubUploaderTwb']['uploads'][$instance->getUploaderId()])) {
-            $instance->setOptions($config['ZfJoacubUploaderTwb']['uploads'][$instance->getUploaderId()]);
+        if(isset($config['JoacubUploader']['uploads'][$instance->getUploaderId()]) && is_array($config['JoacubUploader']['uploads'][$instance->getUploaderId()])) {
+            $instance->setOptions($config['JoacubUploader']['uploads'][$instance->getUploaderId()]);
         }
         
         $instance->mergeOptions();
@@ -292,21 +292,24 @@ class Manager
     {
         $renderer = $this->getRenderer();
         
-        $viewModel = new ViewModel();
-        
-        $templatesJquery = $this->getTemplatesJquery();
-        
         $inlineScript = $renderer->getEngine()->inlineScript()->setAllowArbitraryAttributes(true);
         
-        foreach($templatesJquery as $template => $id) {
-            $viewModel->setTemplate($template);
-            $html = $renderer->render($viewModel);
-            $inlineScript->appendScript($html, 'text/x-tmpl', array('id' => $id, 'noescape' => true));
+        foreach($this->instances as $instance) {
+        	$templatesJquery = $instance->getTemplatesJquery();
+        	$uploaderId = $instance->getUploaderId();
+        	foreach($templatesJquery as $template => $id) {
+        		$viewModel = new ViewModel();
+        		$viewModel->setVariable('idGallery', '#'.$uploaderId . '-gallery');
+        		$viewModel->setTemplate($template);
+        		$html = $renderer->render($viewModel);
+        		$inlineScript->appendScript($html, 'text/x-tmpl', array('id' => $id, 'noescape' => true));
+        	}
         }
+        
         
         $renderer->getEngine()->inlineScript()
         ->prependScript('var optionsZfJoacubUploaderTwb = new Array();')
-        
+        ->appendFile('//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js')
         ->appendFile($renderer->getEngine()->basePath() . '/jQuery-File-Upload/js/vendor/jquery.ui.widget.js')
         ->appendFile($renderer->getEngine()->basePath() . '/jQuery-File-Upload/JavaScript-Templates/js/tmpl.min.js')
         ->appendFile($renderer->getEngine()->basePath() . '/jQuery-File-Upload/JavaScript-Load-Image/js/load-image.min.js')
@@ -346,17 +349,19 @@ class Manager
     public function onFinish($event)
     {
         $renderer = $this->getRenderer();
-        $viewModel = new ViewModel();
         
-        $templatesModalGallery = $this->getTemplatesModalGallery();
-        
-        $html = '';
-        foreach($templatesModalGallery as $template => $id) {
-            $viewModel->setTemplate($template);
-            $html .= '<!-- modal-gallery is the modal dialog used for the image gallery -->
-<div id="' . $id . '" class="modal modal-gallery hide fade" data-filter=":odd" tabindex="-1">';
-            $html .= $renderer->render($viewModel);
-            $html .= '</div>';
+        foreach($this->instances as $instance) {
+	        $templatesModalGallery = $instance->getTemplatesModalGallery();
+	        
+	        $uploaderId = $instance->getUploaderId();
+	        
+	        $html = '';
+	        foreach($templatesModalGallery as $template => $id) {
+	        	$viewModel = new ViewModel();
+	        	$viewModel->setVariable('id', $uploaderId . '-gallery');
+	            $viewModel->setTemplate($template);
+	            $html .= $renderer->render($viewModel);
+	        }
         }
         
         $response    = $event->getApplication()->getResponse();

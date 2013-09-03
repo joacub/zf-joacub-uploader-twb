@@ -44,7 +44,7 @@ return array(
             )
         ),
     ),
-    'ZfJoacubUploaderTwb' => array(
+    'JoacubUploader' => array(
         'options' => array(
             'param_name' => 'files',
             // Set the following option to 'POST', if your server does not support

@@ -10,7 +10,6 @@
  */
 
 /*global define, window, document */
-
 (function (factory) {
     'use strict';
     if (typeof define === 'function' && define.amd) {
@@ -26,7 +25,6 @@
     }
 }(function ($, Gallery) {
     'use strict';
-
     // Global click handler to open links with data-gallery attribute
     // in the Gallery lightbox:
     $(document.body).on('click', '[data-gallery]', function (event) {

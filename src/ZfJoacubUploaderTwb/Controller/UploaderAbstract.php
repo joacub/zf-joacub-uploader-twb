@@ -173,7 +173,7 @@ abstract class UploaderAbstract extends AbstractActionController
             foreach($this->options['image_versions'] as $version => $options) {
                 $versionFile = $this->fileBank->getVersion($file_name, $options);
                 if (!empty($versionFile)) {
-                        $file->{$version.'_url'} = $this->get_download_url(
+                        $file->{$version.'Url'} = $this->get_download_url(
                             $versionFile,
                             $version
                         );
@@ -393,7 +393,7 @@ abstract class UploaderAbstract extends AbstractActionController
             foreach($this->options['image_versions'] as $version => $options) {
                 $versionFile = $this->fileBank->getVersion($fileBankFile, $options);
                 if (!empty($versionFile)) {
-                        $file->{$version.'_url'} = $this->get_download_url(
+                        $file->{$version.'Url'} = $this->get_download_url(
                             $versionFile,
                             $version
                         );
