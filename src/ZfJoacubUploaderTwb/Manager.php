@@ -263,11 +263,15 @@ class Manager
         
         $options = $this->getOptions();
         
+        $uri = clone $request->getUri();
+        $query = $uri->getQueryAsArray();
+        $query['uploader'] = $this->getUploaderId(); 
+        $uri->setQuery($query);
+        
         $this->setOptions(
             $options +
                  array(
-                    'url' => $request->getUri()
-                        ->toString() . '?uploader=' . $this->getUploaderId()
+                    'url' => $uri->toString()
                 ) + $this->getDefaultOptions());
         
         return $this;
