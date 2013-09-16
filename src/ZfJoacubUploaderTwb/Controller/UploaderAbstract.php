@@ -436,6 +436,7 @@ abstract class UploaderAbstract extends AbstractActionController
                     $this->header('Range: 0-'.($this->fix_integer_overflow(intval($files[0]->size)) - 1));
                 }
             }
+            
             $this->body($json);
         }
         return $content;
@@ -585,6 +586,7 @@ abstract class UploaderAbstract extends AbstractActionController
                 $content_range
             );
         }
+        
         return $this->generate_response(
             array($this->options['param_name'] => $files),
             $print_response
