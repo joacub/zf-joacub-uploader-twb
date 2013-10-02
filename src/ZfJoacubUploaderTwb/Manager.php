@@ -353,13 +353,12 @@ class Manager
     public function onFinish($event)
     {
         $renderer = $this->getRenderer();
-        
+        $html = '';
         foreach($this->instances as $instance) {
 	        $templatesModalGallery = $instance->getTemplatesModalGallery();
 	        
 	        $uploaderId = $instance->getUploaderId();
 	        
-	        $html = '';
 	        foreach($templatesModalGallery as $template => $id) {
 	        	$viewModel = new ViewModel();
 	        	$viewModel->setVariable('id', $uploaderId . '-gallery');
