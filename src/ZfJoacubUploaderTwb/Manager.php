@@ -65,6 +65,9 @@ class Manager
         
         $app = $this->sl->get('application');
 		$configOptions = $this->sl->get('configuration');
+		
+		$configOptions['JoacubUploader']['options']['acceptFileTypes'] = new Expr($configOptions['JoacubUploader']['options']['acceptFileTypes']);
+		
 		$this->setDefaultOptions($configOptions['JoacubUploader']['options']);
 		$sm = $app->getServiceManager();
 		$em = $app->getEventManager();
@@ -96,6 +99,7 @@ class Manager
         
         $config = $this->sl->get('Configuration');
         if(isset($config['JoacubUploader']['uploads'][$instance->getUploaderId()]) && is_array($config['JoacubUploader']['uploads'][$instance->getUploaderId()])) {
+            $config['JoacubUploader']['uploads'][$instance->getUploaderId()]['acceptFileTypes'] = new Expr($config['JoacubUploader']['uploads'][$instance->getUploaderId()]['acceptFileTypes']);
             $instance->setOptions($config['JoacubUploader']['uploads'][$instance->getUploaderId()]);
         }
         

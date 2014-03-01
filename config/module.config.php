@@ -121,11 +121,11 @@ return array(
             'downloadTemplatePhtml' => 'ZfJoacubUploaderTwb/template-download',
             'modalGalleryTemplatePhtml' => 'ZfJoacubUploaderTwb/modal-gallery',
             'maxFileSize' => 5000000,
-            'acceptFileTypes' => new Expr('/(\.|\/)(gif|jpe?g|png)$/i'),
+            'acceptFileTypes' => '/(\.|\/)(gif|jpe?g|png)$/i',
             'process' => array(
                 array(
                     'action' => 'load',
-                    'fileTypes' => new Expr('/^image\/(gif|jpeg|png)$/'),
+                    'fileTypes' => '/^image\/(gif|jpeg|png)$/',
                     'maxFileSize' => 20000000, // 20MB
                 ),
                 array(
