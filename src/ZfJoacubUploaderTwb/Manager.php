@@ -110,7 +110,7 @@ class Manager
         if($keywrodsStrategy instanceof \Closure) {
         	$instance->setKeywords($keywrodsStrategy($this->sl, $instance));
         } else {
-        	$instance->setKeywords($keywrodsStrategy);
+        	$instance->setKeywords($keywrodsStrategy, $instance);
         }
         
         $instance->addTemplates();
@@ -120,9 +120,16 @@ class Manager
         return $instance;
     }
     
-    public function setKeywords(Array $keywords = array())
+    public function setKeywords($keywords, $instance)
     {
-    	$this->keywords = $keywords;
+        if(is_array($keywords)) {
+            $this->keywords = $keywords;
+        } else {
+            $service = $this->sl->get($keywords);
+            $service->setManager($instance);
+            $this->keywords = $service->getKeywords();
+        }
+       
     	return $this;
     }
     
