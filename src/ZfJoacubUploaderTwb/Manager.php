@@ -124,7 +124,7 @@ class Manager
     {
         if(is_array($keywords)) {
             $this->keywords = $keywords;
-        } else {
+        } elseif($this->sl->has($keywords)) {
             $service = $this->sl->get($keywords);
             $service->setManager($instance);
             $this->keywords = $service->getKeywords();
