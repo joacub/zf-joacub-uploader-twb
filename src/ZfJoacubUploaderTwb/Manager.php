@@ -120,7 +120,7 @@ class Manager
         return $instance;
     }
     
-    public function setKeywords($keywords, $instance)
+    public function setKeywords($keywords, $instance = null)
     {
         if(is_array($keywords)) {
             $this->keywords = $keywords;
