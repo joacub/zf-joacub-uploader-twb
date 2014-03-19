@@ -101,6 +101,7 @@ class Manager
         $config = $this->sl->get('Configuration');
         if(isset($config['JoacubUploader']['uploads'][$instance->getUploaderId()]) && is_array($config['JoacubUploader']['uploads'][$instance->getUploaderId()])) {
             $config['JoacubUploader']['uploads'][$instance->getUploaderId()]['acceptFileTypes'] = new Expr($config['JoacubUploader']['uploads'][$instance->getUploaderId()]['acceptFileTypes']);
+            $config['JoacubUploader']['uploads'][$instance->getUploaderId()]['dropZone'] = new Expr($config['JoacubUploader']['uploads'][$instance->getUploaderId()]['dropZone']);
             $instance->setOptions($config['JoacubUploader']['uploads'][$instance->getUploaderId()]);
         }
         
