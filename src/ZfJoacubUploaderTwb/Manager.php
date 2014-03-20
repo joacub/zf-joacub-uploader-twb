@@ -66,8 +66,10 @@ class Manager
         $app = $this->sl->get('application');
 		$configOptions = $this->sl->get('configuration');
 		
-		$configOptions['JoacubUploader']['options']['acceptFileTypes'] = new Expr($configOptions['JoacubUploader']['options']['acceptFileTypes']);
-		$configOptions['JoacubUploader']['options']['dropZone'] = new Expr($configOptions['JoacubUploader']['options']['dropZone']);
+		if(isset($configOptions['JoacubUploader']['options']['acceptFileTypes']))
+		  $configOptions['JoacubUploader']['options']['acceptFileTypes'] = new Expr($configOptions['JoacubUploader']['options']['acceptFileTypes']);
+		if(isset($configOptions['JoacubUploader']['options']['dropZone']))
+		  $configOptions['JoacubUploader']['options']['dropZone'] = new Expr($configOptions['JoacubUploader']['options']['dropZone']);
 		
 		$this->setDefaultOptions($configOptions['JoacubUploader']['options']);
 		$sm = $app->getServiceManager();
