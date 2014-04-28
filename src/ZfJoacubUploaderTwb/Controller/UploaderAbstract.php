@@ -391,7 +391,8 @@ abstract class UploaderAbstract extends AbstractActionController
             }
             $file->url = $this->get_download_url($fileBankFile);
             foreach($this->options['image_versions'] as $version => $options) {
-                $versionFile = $this->fileBank->getVersion($fileBankFile, $options, array(), true);
+                $versionFile = $this->fileBank->getVersion($fileBankFile, $options, array());
+                $this->fileBank->createFileVersion($versionFile);
                 if (!empty($versionFile)) {
                         $file->{$version.'Url'} = $this->get_download_url(
                             $versionFile,
