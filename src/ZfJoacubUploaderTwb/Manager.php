@@ -81,7 +81,11 @@ class Manager
         
         $em->attach(MvcEvent::EVENT_RENDER, array($this, 'renderFinish'));
     }
-    
+
+    /**
+     * @param null $instance
+     * @return Manager
+     */
     public function getInstance($instance = null)
     {
         if($instance === null)
@@ -326,10 +330,11 @@ class Manager
         }
         
         
-        $renderer->getEngine()->inlineScript()
-        ->prependScript('var optionsZfJoacubUploaderTwb = new Array();')
-        ->appendFile('//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js')
-        ->appendFile($renderer->getEngine()->basePath() . '/jQuery-File-Upload/js/vendor/jquery.ui.widget.js')
+        $inlineScript = $renderer->getEngine()->inlineScript();
+        $inlineScript->prependScript('var optionsZfJoacubUploaderTwb = new Array();');
+        if($this->getOption('useGoogleLibs'))
+            $inlineScript->appendFile('//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js');
+        $inlineScript->appendFile($renderer->getEngine()->basePath() . '/jQuery-File-Upload/js/vendor/jquery.ui.widget.js')
         ->appendFile($renderer->getEngine()->basePath() . '/jQuery-File-Upload/JavaScript-Templates/js/tmpl.min.js')
         ->appendFile($renderer->getEngine()->basePath() . '/jQuery-File-Upload/JavaScript-Load-Image/js/load-image.min.js')
         ->appendFile($renderer->getEngine()->basePath() . '/jQuery-File-Upload/JavaScript-Canvas-to-Blob/js/canvas-to-blob.min.js')

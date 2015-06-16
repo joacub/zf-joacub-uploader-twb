@@ -46,6 +46,7 @@ return array(
     ),
     'JoacubUploader' => array(
         'options' => array(
+            'useGoogleLibs' => true,
             'param_name' => 'files',
             // Set the following option to 'POST', if your server does not support
             // DELETE requests. This is a parameter sent to the client:
