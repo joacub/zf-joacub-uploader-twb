@@ -3,6 +3,7 @@
 namespace ZfJoacubUploaderTwb;
 
 use Zend\ServiceManager\ServiceLocatorInterface;
+use Zend\View\Model\JsonModel;
 use Zend\View\Model\ViewModel;
 use Zend\Json\Json;
 use Zend\Json\Expr;
@@ -357,7 +358,7 @@ class Manager
     {
         $request = $e->getApplication()->getRequest();
         $request instanceof Request;
-        if($request->isXmlHttpRequest()) {
+        if($request->isXmlHttpRequest() && !$e->getResult() instanceof JsonModel) {
             $match = $e->getRouteMatch();
             $controller = $match->getParam('controller');
             
