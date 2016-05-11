@@ -116,7 +116,15 @@ abstract class UploaderAbstract extends AbstractActionController
     }
 
     protected function set_file_delete_properties($file, \FileBank\Entity\File $fileName) {
-        $file->deleteUrl = '?uploader='. $this->uploader->getUploaderId() .'&file='. $fileName->getId();
+
+        $uriParts = explode('?', $_SERVER["REQUEST_URI"]);
+
+        if(count($uriParts) > 1) {
+            $file->deleteUrl = '?' . $uriParts[1] . '&uploader='. $this->uploader->getUploaderId() .'&file='. $fileName->getId();
+        } else {
+            $file->deleteUrl = '?uploader='. $this->uploader->getUploaderId() .'&file='. $fileName->getId();
+        }
+
         
         $file->deleteType = $this->options['delete_type'];
         if ($file->deleteType !== 'DELETE') {
