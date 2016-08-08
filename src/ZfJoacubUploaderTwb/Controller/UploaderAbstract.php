@@ -191,7 +191,7 @@ abstract class UploaderAbstract extends AbstractActionController
                             $versionFile,
                             $version
                         );
-                } 
+                }
             }
             
             $this->set_file_delete_properties($file, $file_name);
