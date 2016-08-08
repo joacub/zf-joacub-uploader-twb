@@ -191,6 +191,11 @@ abstract class UploaderAbstract extends AbstractActionController
                             $versionFile,
                             $version
                         );
+                } else {
+                    $file->{$version.'Url'} = $this->get_download_url(
+                        $file_name,
+                        $version
+                    );
                 }
             }
             
