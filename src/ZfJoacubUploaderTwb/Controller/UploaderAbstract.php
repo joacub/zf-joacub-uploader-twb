@@ -2,9 +2,7 @@
 
 namespace ZfJoacubUploaderTwb\Controller;
 
-use Zend\Mvc\Controller\AbstractActionController;
 use FileBank\Entity\File;
-use Nette\Diagnostics\Debugger;
 /*
  * jQuery File Upload Plugin PHP Class 6.1
  * https://github.com/blueimp/jQuery-File-Upload

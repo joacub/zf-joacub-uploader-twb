@@ -362,7 +362,7 @@ class Manager
             $match = $e->getRouteMatch();
             $controller = $match->getParam('controller');
             
-            $locator = $e->getApplication()->getServiceManager()->get('ControllerLoader');
+            $locator = $e->getApplication()->getServiceManager()->get('ControllerManager');
             $controllerClass = $locator->get($controller);
             
             $controllerClass->forward()->dispatch('ZfJoacubUploaderTwb\\Controller\\Uploader', array('action' => 'index'));
