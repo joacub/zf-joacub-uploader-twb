@@ -13,7 +13,7 @@
         }
     ],
     "require": {
-        "zendframework/zendframework": "2.*",
+        "zendframework/zend-mvc": "2.* || ^3.0.1",
         "joacub/file-bank": "dev-master"
     },
     "autoload": {
